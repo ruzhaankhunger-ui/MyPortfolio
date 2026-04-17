@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Ruzhaan Khunger - IT Student at NIT Jalandhar, passionate about DSA, C++, Java, and Python.">
+  <meta property="og:title" content="Ruzhaan Khunger | Portfolio">
+  <meta property="og:description" content="IT Student at NITJ | DSA | C++ | Java | Python">
+  <title>Ruzhaan Khunger</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── CSS Variables ── */
+    :root {
+      --bg:        #0d0f14;
+      --surface:   #13161e;
+      --card:      #181c26;
+      --border:    #252a38;
+      --accent:    #c8a96e;
+      --accent2:   #7e9fc9;
+      --text:      #e8e4dc;
+      --muted:     #8a8fa0;
+      --heading:   #f5f0e8;
+      --gold:      #c8a96e;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── Decorative background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 10% 20%, rgba(200,169,110,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 90% 80%, rgba(126,159,201,0.07) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Sticky Nav ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,15,20,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+      height: 56px;
+      overflow-x: auto;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.8rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      background: rgba(200,169,110,0.1);
+    }
+
+    /* ── Layout ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* ── Hero / Intro ── */
+    #intro {
+      padding: 5rem 0 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro-text {}
+
+    .intro-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 900;
+      color: var(--heading);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .intro-role {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.6rem;
+    }
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 400;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .contact-links a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(200,169,110,0.07);
+    }
+
+    /* Profile photo placeholder */
+    .photo-box {
+      width: 130px;
+      height: 160px;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-align: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .photo-box .icon {
+      font-size: 2.5rem;
+      opacity: 0.4;
+    }
+
+    .photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+    /* ── Section Base ── */
+    section {
+      padding: 3.5rem 0 2.5rem;
+      border-bottom: 1px solid var(--border);
+      animation: fadeUp 0.5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border), transparent);
+    }
+
+    h2 .section-num {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    /* ── About ── */
+    #about p {
+      font-size: 0.97rem;
+      color: var(--text);
+      max-width: 700px;
+      line-height: 1.85;
+    }
+
+    #about strong { color: var(--accent); font-weight: 500; }
+    #about em     { color: var(--accent2); font-style: normal; font-weight: 400; }
+    #about mark   { background: rgba(200,169,110,0.18); color: var(--accent); border-radius: 3px; padding: 0 3px; }
+
+    /* ── Education ── */
+    .edu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .edu-list li {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.4rem;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 0 1.2rem;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+
+    .edu-list li:hover { border-color: var(--accent); }
+
+    .edu-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .edu-name {
+      font-weight: 500;
+      color: var(--heading);
+      font-size: 0.95rem;
+    }
+
+    .edu-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+
+    .edu-meta {
+      text-align: right;
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ── Projects ── */
+    dl.projects { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    dl.projects dt {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--heading);
+      padding: 1.1rem 1.4rem 0.3rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      border-radius: 10px 10px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: border-color 0.2s;
+    }
+
+    dl.projects dt::before {
+      content: '▸';
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    dl.projects dd {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.8;
+      padding: 0.6rem 1.4rem 1.1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 10px 10px;
+      margin: 0;
+    }
+
+    dl.projects dt:hover,
+    dl.projects dt:hover + dd { border-color: var(--accent2); }
+
+    /* ── Achievements ── */
+    ul.achievements {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    ul.achievements li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      padding: 0.85rem 1.2rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s;
+    }
+
+    ul.achievements li:hover { border-color: var(--accent); }
+
+    ul.achievements li::before {
+      content: '✦';
+      color: var(--accent);
+      font-size: 0.7rem;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    /* ── Skills / Competency ── */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--card);
+      transition: all 0.2s;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+      background: rgba(126,159,201,0.08);
+    }
+
+    .skill-tag.primary {
+      border-color: rgba(200,169,110,0.4);
+      color: var(--accent);
+      background: rgba(200,169,110,0.07);
+    }
+
+    /* ── Hobbies ── */
+    ul.hobbies {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    ul.hobbies li {
+      font-size: 0.85rem;
+      color: var(--text);
+      padding: 0.45rem 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    /* ── Other Details Table ── */
+    table.details {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    table.details tr { border-bottom: 1px solid var(--border); }
+    table.details tr:last-child { border-bottom: none; }
+
+    table.details th {
+      text-align: left;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.9rem 1rem 0.9rem 0;
+      width: 36%;
+    }
+
+    table.details td {
+      color: var(--text);
+      padding: 0.9rem 0;
+    }
+
+    table.details td strong { color: var(--heading); }
+
+    /* ── Links Section ── */
+    .links-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.75rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.87rem;
+      font-weight: 400;
+      background: var(--card);
+      transition: all 0.2s;
+    }
+
+    .link-card:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(200,169,110,0.07);
+      transform: translateY(-2px);
+    }
+
+    .link-card .lc-icon { font-size: 1.1rem; }
+
+    /* ── Internships / Roles ── */
+    ul.internships {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    ul.internships li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.3rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: border-color 0.2s;
+    }
+
+    ul.internships li:hover { border-color: var(--accent2); }
+
+    ul.internships li .badge {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      border: 1px solid rgba(126,159,201,0.35);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      border-top: 1px solid var(--border);
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      #intro { grid-template-columns: 1fr; }
+      .photo-box { display: none; }
+      h1 { font-size: 2.4rem; }
+      nav { gap: 0; }
+      nav a { padding: 0.3rem 0.55rem; font-size: 0.72rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ STICKY NAV ══════════════ -->
+<header>
+  <nav>
+    <a href="#intro">Home</a>
+    <a href="#about">About</a>
+    <a href="#edu">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#skills">Skills</a>
+    <a href="#internships">Internships</a>
+    <a href="#roles">Roles</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#other">Details</a>
+    <a href="#links">Links</a>
+  </nav>
+</header>
+
+
+<main>
+
+ 
+  <section id="intro">
+    <div class="intro-text">
+      
+      <h1>Ruzhaan<br><span>Khunger</span></h1>
+      <p class="intro-role">B.Tech IT Student &nbsp;·&nbsp; NIT Jalandhar &nbsp;·&nbsp; Batch of 2029</p>
+
+      <div class="contact-links">
+        <a href="tel:+917973360804" target="_self">📞 Phone</a>
+        <a href="mailto:ruzhaankhunger1212@gmail.com" target="_blank">✉️ Email</a>
+        <a href="https://github.com/ruzhaankhunger-ui" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
+        <a href="https://www.linkedin.com/in/ruzhaan-khunger-b432b6386/" target="_blank" rel="noopener noreferrer">💼 LinkedIn</a>
+      </div>
+    </div>
+
+    <!-- Profile photo slot — replace src with your actual photo file -->
+    <div class="photo-box">
+      <div class="photo-box">
+  <img src="profile.jpeg" alt="My Photo">
+</div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <h2><span class="section-num">01</span> About Me</h2>
+    <p>
+      Motivated <strong>IT student</strong> with a strong foundation in
+      <mark>Data Structures &amp; Algorithms</mark> and proficiency in
+      <strong>C++</strong>, <strong>Java</strong>, and <strong>Python</strong>.
+      Currently focused on problem-solving through platforms like
+      <em>LeetCode</em> and <em>GeeksforGeeks</em>, with a structured
+      approach to mastering core CS concepts. Passionate about building
+      <strong>real-world projects</strong>, writing clean and efficient code,
+      and continuously improving through consistent practice. Seeking
+      opportunities to apply problem-solving skills and grow as a
+      <strong>software developer</strong> in a challenging environment.
+    </p>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section id="edu">
+    <h2><span class="section-num">02</span> Education</h2>
+    <ol class="edu-list">
+      <li>
+        <span class="edu-dot"></span>
+        <div>
+          <div class="edu-name">B.Tech — Information Technology</div>
+          <div class="edu-sub">Dr. B R Ambedkar National Institute of Technology, Jalandhar</div>
+        </div>
+        <div class="edu-meta">2025 – 2029</div>
+      </li>
+      <li>
+        <span class="edu-dot"></span>
+        <div>
+          <div class="edu-name">Class XII (Senior Secondary)</div>
+          <div class="edu-sub">DAV School, Abohar, Punjab &nbsp;·&nbsp; <strong>PCM + CS</strong></div>
+        </div>
+        <div class="edu-meta">2025 · 94%</div>
+      </li>
+      <li>
+        <span class="edu-dot"></span>
+        <div>
+          <div class="edu-name">Class X (Secondary)</div>
+          <div class="edu-sub">DAV School, Abohar, Punjab</div>
+        </div>
+        <div class="edu-meta">2023 · 92%</div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects">
+    <h2><span class="section-num">03</span> Projects</h2>
+    <dl class="projects">
+
+      <dt><strong>Algorithm Visualizer</strong></dt>
+      <dd>
+        Developed an interactive Algorithm Visualizer to demonstrate <em>sorting and
+        searching algorithms</em> with step-by-step execution. Built using HTML, CSS,
+        and JavaScript; supports Bubble Sort, Selection Sort, Binary Search, and
+        more. Features adjustable animation speed and array size controls to help
+        users understand algorithm behaviour intuitively.
+      </dd>
+
+      <dt><strong>Multi-User Chat Application</strong></dt>
+      <dd>
+        Developed a real-time multi-user chat application supporting
+        <em>concurrent client connections</em> via socket programming in Java.
+        Implements a server-client architecture with thread management for each
+        connected user, username assignment, broadcast messaging, and graceful
+        disconnect handling.
+      </dd>
+
+      <dt><strong>DSA Problem Tracker &amp; Notes App</strong></dt>
+      <dd>
+        Built a personal productivity tool to track solved DSA problems across
+        LeetCode and GeeksforGeeks. Features topic-wise categorisation (Arrays,
+        Trees, Graphs, DP, etc.), difficulty tagging, revision flags, and a
+        simple notes panel for approach documentation. Stores data using
+        localStorage for persistence across sessions.
+      </dd>
+
+    </dl>
+  </section>
+
+  <!-- ── ACHIEVEMENTS ── -->
+  <section id="achievements">
+    <h2><span class="section-num">04</span> Achievements</h2>
+    <ul class="achievements">
+      <li>Solved <strong>100+ Data Structures &amp; Algorithms</strong> problems across LeetCode and GeeksforGeeks with a strong focus on optimisation and edge-case handling.</li>
+      <li>Applied <strong>Euler's theorem</strong> and mathematical modelling concepts to practical competitive-programming problems.</li>
+      <li>Developed interactive web projects integrating <strong>algorithm visualisation</strong> with real-time UI feedback.</li>
+      <li>Consistently practices on coding platforms, maintaining streaks and improving problem-solving speed under timed conditions.</li>
+      <li>Active member of the <strong>Web Development and Management Club (WDMC)</strong> at NIT Jalandhar.</li>
+    </ul>
+  </section>
+
+  <!-- ── SOFTWARE COMPETENCY ── -->
+  <section id="skills">
+    <h2><span class="section-num">05</span> Software Competency</h2>
+    <div class="skills-grid">
+      <span class="skill-tag primary">C++</span>
+      <span class="skill-tag primary">Java</span>
+      <span class="skill-tag primary">Python</span>
+      <span class="skill-tag primary">Data Structures &amp; Algorithms</span>
+      <span class="skill-tag">HTML5</span>
+      <span class="skill-tag">CSS3</span>
+      <span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">Git &amp; GitHub</span>
+      <span class="skill-tag">VS Code</span>
+      <span class="skill-tag">LeetCode</span>
+      <span class="skill-tag">GeeksforGeeks</span>
+      <span class="skill-tag">OOP</span>
+    </div>
+  </section>
+
+  <!-- ── INTERNSHIPS ── -->
+  <section id="internships">
+    <h2><span class="section-num">06</span> Internships</h2>
+    <ul class="internships">
+      <li>
+        <span class="badge">Upcoming</span>
+        <span>Open to Software Development / DSA Internship opportunities — Summer 2025</span>
+      </li>
+      <li>
+        <span class="badge">Self-directed</span>
+        <span>Independent project development &amp; open-source contributions — ongoing</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── ROLES OF RESPONSIBILITY ── -->
+  <section id="roles">
+    <h2><span class="section-num">07</span> Roles of Responsibility</h2>
+    <ul class="internships">
+      <li>
+        <span class="badge">Club Member</span>
+        <span>Web Development &amp; Management Club (WDMC) — NIT Jalandhar</span>
+      </li>
+      <li>
+        <span class="badge">Peer Mentor</span>
+        <span>Assists juniors with DSA concept revision and problem-solving strategies</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── HOBBIES ── -->
+  <section id="hobbies">
+    <h2><span class="section-num">08</span> Hobbies</h2>
+    <ul class="hobbies">
+      <li>⌨️ Competitive Programming</li>
+      <li>🔧 Building Side Projects</li>
+      <li>📚 Reading Tech Blogs</li>
+      <li>♟️ Chess</li>
+      <li>🎮 Strategy Games</li>
+      <li>🌐 Exploring Open Source</li>
+    </ul>
+  </section>
+
+  <!-- ── OTHER DETAILS ── -->
+  <section id="other">
+    <h2><span class="section-num">09</span> Other Details</h2>
+    <table class="details">
+      <tr>
+        <th>Date of Birth</th>
+        <td><strong>29 12 2006</strong></td>
+      </tr>
+      <tr>
+        <th>Blood Group</th>
+        <td><strong>O+</strong></td>
+      </tr>
+      <tr>
+        <th>Father's Name</th>
+        <td>Mr. Ashish Khunger</td>
+      </tr>
+      <tr>
+        <th>Mother's Name</th>
+        <td>Mrs. Poonam Khunger</td>
+      </tr>
+      <tr>
+        <th>Father's Occupation</th>
+        <td>Business</td>
+      </tr>
+      <tr>
+        <th>Address for Communication</th>
+        <td>Abohar, Punjab, India — 152116</td>
+      </tr>
+      <tr>
+        <th>Emergency Contact</th>
+        <td><a href="tel:+917973360804" style="color:var(--accent2); text-decoration:none;">+91 79733 60804</a></td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- ── LINKS ── -->
+  <section id="links">
+    <h2><span class="section-num">10</span> Links</h2>
+    <div class="links-grid">
+      <a class="link-card" href="https://github.com/ruzhaankhunger-ui" target="_blank" rel="noopener noreferrer">
+        <span class="lc-icon">🐙</span> GitHub
+      </a>
+      <a class="link-card" href="https://www.linkedin.com/in/ruzhaan-khunger-b432b6386/" target="_blank" rel="noopener noreferrer">
+        <span class="lc-icon">💼</span> LinkedIn
+      </a>
+      <a class="link-card" href="https://leetcode.com/u/DffSLsdIML/" target="_blank" rel="noopener noreferrer">
+        <span class="lc-icon">⚡</span> LeetCode
+      </a>
+      <a class="link-card" href="https://www.geeksforgeeks.org/profile/ruzhaankhucckz" target="_blank" rel="noopener noreferrer">
+        <span class="lc-icon">💻</span> GeeksforGeeks
+      </a>
+      <a class="link-card" href="mailto:ruzhaankhunger1212@gmail.com" target="_top">
+        <span class="lc-icon">✉️</span> Email Me
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <p>© 2026 <span>Ruzhaan Khunger</span> &nbsp;·&nbsp; B.Tech IT, NIT Jalandhar &nbsp;·&nbsp; All rights reserved.</p>
+</footer>
+
+</body>
+</html>
